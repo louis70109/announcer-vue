@@ -132,7 +132,7 @@ export default {
       let params = new URLSearchParams(uri);
       const state = params.get("liff.state");
       if (state) {
-        fetch("http://localhost:5000/liff").then(async (res) => {
+        fetch("${process.env.ANNOUNCE_SERVER}/liff").then(async (res) => {
           const r = await res.json();
           console.log(r);
           await liff
@@ -143,7 +143,7 @@ export default {
             });
         });
       } else {
-        fetch("http://localhost:5000/liff").then(async (res) => {
+        fetch(`${process.env.ANNOUNCE_SERVER}/liff`).then(async (res) => {
           const r = await res.json();
           liff
             .init({ liffId: r.liffId })
@@ -161,7 +161,7 @@ export default {
 
     function submitTempleteForm() {
       fetch(
-        `http://localhost:5000/liff/share?${qs.stringify(form.value)}`
+        `${process.env.ANNOUNCE_SERVER}/liff/share?${qs.stringify(form.value)}`
       ).then(async (res) => {
         data = await res.json();
         await liff
