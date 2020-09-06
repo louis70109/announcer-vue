@@ -132,7 +132,7 @@ export default {
       let params = new URLSearchParams(uri);
       const state = params.get("liff.state");
       if (state) {
-        fetch("${process.env.ANNOUNCE_SERVER}/liff").then(async (res) => {
+        fetch(`${process.env.ANNOUNCE_SERVER}/liff`).then(async (res) => {
           const r = await res.json();
           console.log(r);
           await liff
