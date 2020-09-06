@@ -1,6 +1,5 @@
 <template>
   <div class="hello">
-    {{ server }}
     <p>
       樣板選擇：
       <select id="template" @change="optionCheck($event)" name="template">
@@ -246,7 +245,6 @@ export default {
       optionCheck,
       submitTempleteForm,
       peopleListPlus,
-      server,
     };
   },
 };
