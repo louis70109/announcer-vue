@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    {{ server }}
     <p>
       樣板選擇：
       <select id="template" @change="optionCheck($event)" name="template">
@@ -132,9 +133,8 @@ export default {
       let params = new URLSearchParams(uri);
       const state = params.get("liff.state");
       if (state) {
-        fetch(`${process.env.ANNOUNCE_SERVER}/liff`).then(async (res) => {
+        fetch(`${process.env.VUE_APP_API}/liff`).then(async (res) => {
           const r = await res.json();
-          console.log(r);
           await liff
             .init({ liffId: r.liffId })
             .then(() => {})
@@ -143,7 +143,7 @@ export default {
             });
         });
       } else {
-        fetch(`${process.env.ANNOUNCE_SERVER}/liff`).then(async (res) => {
+        fetch(`${process.env.VUE_APP_API}/liff`).then(async (res) => {
           const r = await res.json();
           liff
             .init({ liffId: r.liffId })
@@ -161,7 +161,7 @@ export default {
 
     function submitTempleteForm() {
       fetch(
-        `${process.env.ANNOUNCE_SERVER}/liff/share?${qs.stringify(form.value)}`
+        `${process.env.VUE_APP_API}/liff/share?${qs.stringify(form.value)}`
       ).then(async (res) => {
         data = await res.json();
         await liff
@@ -246,6 +246,7 @@ export default {
       optionCheck,
       submitTempleteForm,
       peopleListPlus,
+      server,
     };
   },
 };
