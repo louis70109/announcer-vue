@@ -171,7 +171,7 @@ export default {
         }
         if (liff.isApiAvailable("shareTargetPicker")) {
           liff
-            .shareTargetPicker([data.flex])
+            .shareTargetPicker([JSON.parse(data.flex)])
             .then(function(res) {
               if (res) {
                 // succeeded in sending a message through TargetPicker
