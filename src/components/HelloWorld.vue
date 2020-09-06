@@ -161,9 +161,9 @@ export default {
     function submitTempleteForm() {
       fetch(
         `${process.env.VUE_APP_API}/liff/share?${qs.stringify(form.value)}`
-      ).then(async (res) => {
-        data = await res.json();
-        await liff
+      ).then((res) => {
+        data = res.json();
+        liff
           .init({ liffId: data.liffId })
           .then(() => {
             if (!liff.isLoggedIn()) {
