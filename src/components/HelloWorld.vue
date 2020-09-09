@@ -126,82 +126,57 @@ import qs from "qs";
 export default {
   setup() {
     let form = ref({ template: "1" }),
-      data = {};
-    onMounted(() => {
-      let uri = window.location.search.substring(1);
-      let params = new URLSearchParams(uri);
-      const state = params.get("liff.state");
-      if (state) {
-        fetch(`${process.env.VUE_APP_API}/liff`).then(async (res) => {
-          const r = await res.json();
-          await liff
-            .init({ liffId: r.liffId })
-            .then(() => {})
-            .catch((err) => {
-              console.log("Error: " + err);
-            });
-        });
-      } else {
-        fetch(`${process.env.VUE_APP_API}/liff`).then(async (res) => {
-          const r = await res.json();
-          liff
-            .init({ liffId: r.liffId })
-            .then(() => {
-              if (!liff.isLoggedIn()) {
-                liff.login({ redirectUri: location.href });
-              }
-            })
-            .catch((err) => {
-              alert("ERROR:", err);
-            });
-        });
+      data = {},
+      announcer_api = process.env.VUE_APP_API;
+    onMounted(async () => {
+      // let uri = window.location.search.substring(1);
+      // let params = new URLSearchParams(uri);
+      // const state = params.get("liff.state");
+      const res = await fetch(`${announcer_api}/liff`);
+      const r = await res.json();
+
+      try {
+        await liff.init({ liffId: r.liffId });
+      } catch (err) {
+        console.log(`liff.state init error ${err}`);
       }
     });
 
     async function submitTempleteForm() {
       const res = await fetch(
-        `${process.env.VUE_APP_API}/liff/share?${qs.stringify(form.value)}`
+        `${announcer_api}/liff/share?${qs.stringify(form.value)}`
       );
-
       data = await res.json();
-      await liff.init({ liffId: data.liffId }).then(() => {
-        if (!liff.isLoggedIn()) {
-          liff.login({ redirectUri: location.href });
-          return new Promise(() => {}); // 永遠不會結束的 Promise
+      if (liff.isApiAvailable("shareTargetPicker")) {
+        try {
+          const picker = await liff.shareTargetPicker([JSON.parse(data.flex)]);
+          if (picker) {
+            // succeeded in sending a message through TargetPicker
+            console.log(`[${picker.status}] Message sent!`);
+            liff.closeWindow();
+          } else {
+            const [majorVer, minorVer] = (liff.getLineVersion() || "").split(
+              "."
+            );
+            if (parseInt(majorVer) == 10 && parseInt(minorVer) < 11) {
+              // LINE 10.3.0 - 10.10.0
+              // Old LINE will access here regardless of user's action
+              console.log(
+                "TargetPicker was opened at least. Whether succeeded to send message is unclear"
+              );
+            } else {
+              // LINE 10.11.0 -
+              // sending message canceled
+              console.log("TargetPicker was closed!");
+            }
+          }
+        } catch (error) {
+          // something went wrong before sending a message
+          console.log(error);
+          console.log("Flex Message got some error");
+          liff.closeWindow();
         }
-        if (liff.isApiAvailable("shareTargetPicker")) {
-          liff
-            .shareTargetPicker([JSON.parse(data.flex)])
-            .then(function(res) {
-              if (res) {
-                // succeeded in sending a message through TargetPicker
-                console.log(`[${res.status}] Message sent!`);
-                liff.closeWindow();
-              } else {
-                const [majorVer, minorVer] = (
-                  liff.getLineVersion() || ""
-                ).split(".");
-                if (parseInt(majorVer) == 10 && parseInt(minorVer) < 11) {
-                  // LINE 10.3.0 - 10.10.0
-                  // Old LINE will access here regardless of user's action
-                  console.log(
-                    "TargetPicker was opened at least. Whether succeeded to send message is unclear"
-                  );
-                } else {
-                  // LINE 10.11.0 -
-                  // sending message canceled
-                  console.log("TargetPicker was closed!");
-                }
-              }
-            })
-            .catch((error) => {
-              // something went wrong before sending a message
-              console.log(error);
-              console.log("Flex Message got some error");
-              liff.closeWindow();
-            });
-        }
-      });
+      }
     }
     function optionCheck(event) {
       // init
