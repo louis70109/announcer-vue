@@ -126,12 +126,7 @@ import qs from "qs";
 export default {
   setup() {
     let form = ref({
-        template: (() => {
-          const uri = window.location.search.substring(1);
-          const params = new URLSearchParams(uri);
-          console.log(params.get("template"));
-          return params.get("template");
-        })(),
+        template: "",
       }),
       data = {},
       announcer_api = process.env.VUE_APP_API;
@@ -144,6 +139,11 @@ export default {
       } catch (err) {
         console.log(`liff.state init error ${err}`);
       }
+      const uri = window.location.search.substring(1);
+      const params = new URLSearchParams(uri);
+      const state = params.get("template");
+      form.value.template = state;
+      if (state === "2") form.value.people = [{ name: "", time: "" }];
     });
 
     async function submitTempleteForm() {
