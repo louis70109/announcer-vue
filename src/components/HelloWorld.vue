@@ -125,13 +125,16 @@ import liff from "@line/liff";
 import qs from "qs";
 export default {
   setup() {
-    let form = ref({ template: "1" }),
+    let form = ref({
+        template: () => {
+          const uri = window.location.search.substring(1);
+          const params = new URLSearchParams(uri);
+          return params.get("template");
+        },
+      }),
       data = {},
       announcer_api = process.env.VUE_APP_API;
     onMounted(async () => {
-      // let uri = window.location.search.substring(1);
-      // let params = new URLSearchParams(uri);
-      // const state = params.get("liff.state");
       const res = await fetch(`${announcer_api}/liff`);
       const r = await res.json();
 
