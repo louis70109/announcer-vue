@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <p>
+      {{ form.template }}
       樣板選擇：
       <select id="template" @change="optionCheck($event)" name="template">
         <option>活動表</option>
@@ -126,11 +127,12 @@ import qs from "qs";
 export default {
   setup() {
     let form = ref({
-        template: () => {
+        template: (() => {
           const uri = window.location.search.substring(1);
           const params = new URLSearchParams(uri);
+          console.log(params.get("template"));
           return params.get("template");
-        },
+        })(),
       }),
       data = {},
       announcer_api = process.env.VUE_APP_API;
