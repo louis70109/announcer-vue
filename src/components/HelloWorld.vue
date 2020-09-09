@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
     <p>
-      {{ form.template }}
       樣板選擇：
       <select id="template" @change="optionCheck($event)" name="template">
         <option>活動表</option>
