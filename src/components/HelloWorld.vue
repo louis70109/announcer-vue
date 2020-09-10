@@ -138,10 +138,8 @@ export default {
 
       try {
         await liff.init({ liffId });
-        if (!liff.isLoggedIn()) {
+        if (!liff.isLoggedIn())
           liff.login({ redirectUri: window.location.href });
-          return new Promise.all();
-        }
       } catch (err) {
         console.log(`liff.state init error ${err}`);
       }
