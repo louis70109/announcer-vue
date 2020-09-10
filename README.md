@@ -8,8 +8,6 @@ Template like this:
 
 > If you want to get these, you need to follow [Announcer](https://github.com/louis70109/Announcer) README.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-
 > [static.json] is Heroku setting file, if you want to understand more, you can follow [this page](https://elements.heroku.com/buildpacks/heroku/heroku-buildpack-static)
 
 ## Project setup
