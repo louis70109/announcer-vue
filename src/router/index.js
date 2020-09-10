@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HelloWorld from "../components/HelloWorld.vue";
+import LiffTemplate from "../components/LiffTemplate.vue";
 const routerHistory = createWebHistory();
 
 const router = createRouter({
@@ -7,7 +7,7 @@ const router = createRouter({
   routes: [
     {
       path: "/liff/template",
-      component: HelloWorld,
+      component: LiffTemplate,
     },
   ],
 });
