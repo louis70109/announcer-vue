@@ -129,13 +129,17 @@ export default {
         template: "",
       }),
       data = {},
-      announcer_api = process.env.VUE_APP_API;
+      announcer_api = process.env.VUE_APP_API,
+      liffId = "";
     onMounted(async () => {
       const res = await fetch(`${announcer_api}/liff`);
       const r = await res.json();
+      liffId = r.liffId;
 
       try {
-        await liff.init({ liffId: r.liffId });
+        await liff.init({ liffId });
+        if (!liff.isLoggedIn())
+          liff.login({ redirectUri: window.location.href });
       } catch (err) {
         console.log(`liff.state init error ${err}`);
       }
@@ -147,10 +151,12 @@ export default {
     });
 
     async function submitTempleteForm() {
+      if (!liff.isLoggedIn()) liff.login({ redirectUri: window.location.href });
       const res = await fetch(
         `${announcer_api}/liff/share?${qs.stringify(form.value)}`
       );
       data = await res.json();
+      console.log("data: ", data);
       if (liff.isApiAvailable("shareTargetPicker")) {
         try {
           const picker = await liff.shareTargetPicker([JSON.parse(data.flex)]);
@@ -163,16 +169,10 @@ export default {
               "."
             );
             if (parseInt(majorVer) == 10 && parseInt(minorVer) < 11) {
-              // LINE 10.3.0 - 10.10.0
-              // Old LINE will access here regardless of user's action
               console.log(
                 "TargetPicker was opened at least. Whether succeeded to send message is unclear"
               );
-            } else {
-              // LINE 10.11.0 -
-              // sending message canceled
-              console.log("TargetPicker was closed!");
-            }
+            } else console.log("TargetPicker was closed!");
           }
         } catch (error) {
           // something went wrong before sending a message
@@ -180,7 +180,7 @@ export default {
           console.log("Flex Message got some error");
           liff.closeWindow();
         }
-      }
+      } else console.log("Please login...");
     }
     function optionCheck(event) {
       // init
@@ -218,6 +218,7 @@ export default {
       optionCheck,
       submitTempleteForm,
       peopleListPlus,
+      liffId,
     };
   },
 };
