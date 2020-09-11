@@ -13,7 +13,7 @@
     "@line/liff": "^2.4.0",
     "core-js": "^3.6.5",
     "qs": "^6.9.4",
-    "vue": "^3.0.0-0",
+    "vue": "^3.0.0-rc.10",
     "vue-router": "^4.0.0-beta.9"
   },
   "devDependencies": {
