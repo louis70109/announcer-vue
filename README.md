@@ -44,3 +44,7 @@ npx ngrok http --region ap --host-header=rewrite 8080
 ```
 npm run build
 ```
+
+# License
+
+MIT License
