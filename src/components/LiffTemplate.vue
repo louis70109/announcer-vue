@@ -208,7 +208,7 @@
           <input
             type="text"
             class="form-control"
-            placeholder="Input tag"
+            placeholder="Input name"
             aria-describedby="addon-wrapping"
             v-model="form.people[index].name"
             required
@@ -219,7 +219,7 @@
           <input
             type="text"
             class="form-control"
-            placeholder="Input tag"
+            placeholder="Input time"
             aria-describedby="addon-wrapping"
             v-model="form.people[index].time"
             required
@@ -251,15 +251,13 @@ export default {
         template: "",
       }),
       data = {},
-      announcer_api = process.env.VUE_APP_API,
-      liffId = "";
+      announcer_api = process.env.VUE_APP_API;
     onMounted(async () => {
       const res = await fetch(`${announcer_api}/liff`);
       const r = await res.json();
-      liffId = r.liffId;
 
       try {
-        await liff.init({ liffId });
+        await liff.init({ liffId: r.liffId });
         if (!liff.isLoggedIn())
           liff.login({ redirectUri: window.location.href });
       } catch (err) {
@@ -342,7 +340,6 @@ export default {
       optionCheck,
       submitTempleteForm,
       peopleListPlus,
-      liffId,
     };
   },
 };
