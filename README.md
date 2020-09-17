@@ -33,7 +33,7 @@ npx ngrok http --region ap --host-header=rewrite 8080
 ![ngrok](https://i.imgur.com/05shvgv.png)
 
 - Next step you need to create a **LINE Login channel** in [Developer Console](https://developers.line.biz/console)
-  - Create a LIFF app with `https://DOMAIN_URL/template` endpoint url.
+  - Create a LIFF app with `https://DOMAIN_URL/liff/template` endpoint url.
   - publish LINE Login channel.
   - enable shareTargetPicker button.
 
@@ -44,3 +44,7 @@ npx ngrok http --region ap --host-header=rewrite 8080
 ```
 npm run build
 ```
+
+# License
+
+MIT License
