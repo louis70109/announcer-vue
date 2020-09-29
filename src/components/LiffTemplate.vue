@@ -242,7 +242,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onCreated } from "vue";
 import liff from "@line/liff";
 import qs from "qs";
 export default {
@@ -252,11 +252,11 @@ export default {
       }),
       data = {},
       announcer_api = process.env.VUE_APP_API;
-    onMounted(async () => {
+    onCreated(async () => {
       const res = await fetch(`${announcer_api}/liff`);
-      const r = await res.json();
 
       try {
+        const r = await res.json();
         await liff.init({ liffId: r.liffId });
         if (!liff.isLoggedIn())
           liff.login({ redirectUri: window.location.href });
@@ -271,10 +271,8 @@ export default {
     });
 
     async function submitTempleteForm() {
-      if (!liff.isLoggedIn()) {
-        liff.login({ redirectUri: window.location.href });
-        return new Promise.all();
-      }
+      if (!liff.isLoggedIn()) liff.login({ redirectUri: window.location.href });
+
       const res = await fetch(
         `${announcer_api}/liff/share?${qs.stringify(form.value)}`
       );
