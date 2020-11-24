@@ -1,6 +1,6 @@
 # Announcer Frontend(AF)
 
-AF is based on Vue3(beta), its backend API service is [Announcer](https://github.com/louis70109/Announcer), it uses [LIFF](https://developers.line.biz/en/reference/liff/)'s [shareTargetPicker](https://developers.line.biz/en/reference/liff/#share-target-picker) to send and generate form data to [FlexMessage](https://developers.line.biz/en/docs/messaging-api/using-flex-messages/) template for LINE User/Group/Room 🙂.
+AF is based on Vue3, the backend API is [Announcer](https://github.com/louis70109/Announcer), it uses [LIFF](https://developers.line.biz/en/reference/liff/)'s [shareTargetPicker](https://developers.line.biz/en/reference/liff/#share-target-picker) to send and generate form data to [FlexMessage](https://developers.line.biz/en/docs/messaging-api/using-flex-messages/) template for LINE User/Group/Room 🙂.
 
 Template like this:
 
@@ -21,7 +21,7 @@ git clone https://github.com/louis70109/announcer-vue.git
 cd announcer-vue/
 npm install
 cp .env.example .env # Input backend API url in VUE_APP_API
-npm run serve
+npm run dev
 ```
 
 - Build a new terminal and input the following command to forward localhost to SSL environment by [Ngrok](https://ngrok.com/).:
