@@ -10,7 +10,7 @@
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
-    "@line/liff": "^2.4.0",
+    "@line/liff": "^2.4.1",
     "core-js": "^3.6.5",
     "qs": "^6.9.4",
     "vue": "^3.0.0",
