@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="profile">
     <img
       :src="user.picture"
       alt="userPicture"
@@ -44,11 +44,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.pictureUrl {
-  width: 240px;
-  height: 240px;
-  border-radius: 50%;
-}
-</style>
