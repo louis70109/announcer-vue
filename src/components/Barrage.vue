@@ -10,33 +10,49 @@ export default {
   setup() {
     let data = ref([]),
       count = ref(0),
-      timer = null;
+      ws = new WebSocket('ws://localhost:3000');
+
     onMounted(async () => {
-      timer = window.setInterval(() => {
-        data.value.push(count.value);
-        count.value += 1;
-        createText(count.value);
-        console.log('Hello!');
-      }, 1000);
+      ws.onopen = () => {
+        console.log('open connection');
+      };
+
+      ws.onmessage = (event) => {
+        console.log(event.data);
+        createText(event.data);
+      };
     });
     onUnmounted(() => {
-      window.clearInterval(timer);
+      ws.onclose = () => {
+        console.log('close connection');
+      };
     });
     async function createText(text) {
       let div_text = document.createElement('div');
       div_text.id = 'text' + 1;
       div_text.style.position = 'fixed';
       div_text.style.whiteSpace = 'nowrap';
+
       div_text.style.left = document.documentElement.clientWidth + 'px';
-      var random = Math.round(
+      const random = Math.round(
         Math.random() * document.documentElement.clientHeight
       );
+
       div_text.style.top = random + 'px';
+
+      //<img src="..." alt="..." class="img-thumbnail">
+      let picture = document.createElement('img');
+      picture.src = 'image url';
+      picture.className = 'img-thumbnail';
+      picture.style.width = '50px';
+      picture.style.height = '50px';
+
+      div_text.appendChild(picture);
       div_text.appendChild(document.createTextNode(text));
       document.body.appendChild(div_text);
 
       await gsap.to('#' + div_text.id, {
-        duration: 5,
+        duration: 8,
         x: -1 * (document.documentElement.clientWidth + div_text.clientWidth),
       });
 
