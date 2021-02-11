@@ -22,7 +22,7 @@
           placeholder="Input your topic"
           aria-describedby="addon-wrapping"
           name="title"
-          v-model="form.title"
+          v-model.trim="form.title"
           required
         />
       </div>
@@ -36,7 +36,7 @@
           placeholder="Input your location"
           aria-describedby="addon-wrapping"
           name="place"
-          v-model="form.place"
+          v-model.trim="form.place"
           required
         />
       </div>
@@ -50,7 +50,7 @@
           placeholder="Input time e.g. 12/34 56:78"
           aria-describedby="addon-wrapping"
           name="time"
-          v-model="form.time"
+          v-model.trim="form.time"
           required
         />
       </div>
@@ -64,7 +64,7 @@
           placeholder="Input activity type"
           aria-describedby="addon-wrapping"
           name="activity"
-          v-model="form.activity"
+          v-model.trim="form.activity"
           required
         />
       </div>
@@ -80,7 +80,7 @@
           placeholder="Input url e.g. https://open_url.com/xxx.jpg"
           aria-describedby="addon-wrapping"
           name="url"
-          v-model="form.url"
+          v-model.trim="form.url"
           required
         />
       </div>
@@ -96,7 +96,7 @@
           placeholder="Input a image url e.g. https://open_url.com/xxx.jpg"
           aria-describedby="addon-wrapping"
           name="imageUrl"
-          v-model="form.imageUrl"
+          v-model.trim="form.imageUrl"
           required
         />
       </div>
@@ -129,7 +129,7 @@
           placeholder="Input your topic"
           aria-describedby="addon-wrapping"
           name="title"
-          v-model="form.title"
+          v-model.trim="form.title"
           required
         />
       </div>
@@ -143,7 +143,7 @@
           placeholder="Input your location"
           aria-describedby="addon-wrapping"
           name="place"
-          v-model="form.place"
+          v-model.trim="form.place"
           required
         />
       </div>
@@ -159,7 +159,7 @@
           placeholder="Input a image url e.g. https://open_url.com/xxx.jpg"
           aria-describedby="addon-wrapping"
           name="url"
-          v-model="form.url"
+          v-model.trim="form.url"
           required
         />
       </div>
@@ -172,10 +172,10 @@
         <input
           type="text"
           class="form-control"
-          placeholder="Input a image url e.g. https://open_url.com/xxx.jpg"
+          placeholder="Input a google url e.g. https://map.com"
           aria-describedby="addon-wrapping"
           name="map"
-          v-model="form.map"
+          v-model.trim="form.map"
           required
         />
       </div>
@@ -189,7 +189,7 @@
           placeholder="Input tag"
           aria-describedby="addon-wrapping"
           name="tag"
-          v-model="form.activity"
+          v-model.trim="form.activity"
           required
         />
       </div>
@@ -211,7 +211,7 @@
             class="form-control"
             placeholder="Input name"
             aria-describedby="addon-wrapping"
-            v-model="form.people[index].name"
+            v-model.trim="form.people[index].name"
             required
           />
           <div class="input-group-prepend">
@@ -222,7 +222,7 @@
             class="form-control"
             placeholder="Input time"
             aria-describedby="addon-wrapping"
-            v-model="form.people[index].time"
+            v-model.trim="form.people[index].time"
             required
           />
         </div>
@@ -246,7 +246,7 @@
           placeholder="Input your name"
           aria-describedby="addon-wrapping"
           name="title"
-          v-model="form.title"
+          v-model.trim="form.title"
         />
       </div>
       <div class="input-group flex-nowrap">
@@ -259,7 +259,7 @@
           placeholder="Input your avatar url e.g. https://open_url.com/xxx.jpg"
           aria-describedby="addon-wrapping"
           name="avatar"
-          v-model="form.avatar"
+          v-model.trim="form.avatar"
         />
       </div>
       <div class="input-group flex-nowrap">
@@ -272,7 +272,7 @@
           placeholder="Input your background url e.g. https://open_url.com/xxx.jpg"
           aria-describedby="addon-wrapping"
           name="back"
-          v-model="form.back"
+          v-model.trim="form.back"
         />
       </div>
       <div class="input-group flex-nowrap">
@@ -285,7 +285,7 @@
           placeholder="Input your persional SNS link e.g. https://line.me/xxx"
           aria-describedby="addon-wrapping"
           name="followUrl"
-          v-model="form.followUrl"
+          v-model.trim="form.followUrl"
         />
       </div>
       <div class="input-group">
