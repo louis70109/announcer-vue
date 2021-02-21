@@ -76,6 +76,7 @@
         </div>
         <input
           type="text"
+          inputmode="url"
           class="form-control"
           placeholder="Input url e.g. https://open_url.com/xxx.jpg"
           aria-describedby="addon-wrapping"
@@ -92,6 +93,7 @@
         </div>
         <input
           type="text"
+          inputmode="url"
           class="form-control"
           placeholder="Input a image url e.g. https://open_url.com/xxx.jpg"
           aria-describedby="addon-wrapping"
@@ -156,6 +158,7 @@
         <input
           type="text"
           class="form-control"
+          inputmode="url"
           placeholder="Input a image url e.g. https://open_url.com/xxx.jpg"
           aria-describedby="addon-wrapping"
           name="url"
@@ -172,6 +175,7 @@
         <input
           type="text"
           class="form-control"
+          inputmode="url"
           placeholder="Input a google url e.g. https://map.com"
           aria-describedby="addon-wrapping"
           name="map"
@@ -256,6 +260,7 @@
         <input
           type="text"
           class="form-control"
+          inputmode="url"
           placeholder="Input your avatar url e.g. https://open_url.com/xxx.jpg"
           aria-describedby="addon-wrapping"
           name="avatar"
@@ -269,6 +274,7 @@
         <input
           type="text"
           class="form-control"
+          inputmode="url"
           placeholder="Input your background url e.g. https://open_url.com/xxx.jpg"
           aria-describedby="addon-wrapping"
           name="back"
@@ -282,6 +288,7 @@
         <input
           type="text"
           class="form-control"
+          inputmode="url"
           placeholder="Input your persional SNS link e.g. https://line.me/xxx"
           aria-describedby="addon-wrapping"
           name="followUrl"
