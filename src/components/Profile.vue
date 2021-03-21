@@ -27,7 +27,7 @@ export default {
       picture: '',
     });
     onMounted(async () => {
-      await liff.ready;
+      await liff.ready();
       if (!liff.isLoggedIn()) {
         liff.login();
       }
