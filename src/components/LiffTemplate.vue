@@ -315,7 +315,7 @@
       <br />
     </div>
     <br />
-    <button type="button" class="btn btn-primary" @click="submitTempleteForm">
+    <button type="button" class="btn btn-primary" @click="submitTemplateForm">
       送出
     </button>
   </div>
@@ -340,7 +340,7 @@ export default {
       if (state === '2') form.value.people = [{ name: '', time: '' }];
     });
 
-    async function submitTempleteForm() {
+    async function submitTemplateForm() {
       if (!liff.isLoggedIn()) {
         liff.login({ redirectUri: window.location.href });
         return new Promise.all();
@@ -417,7 +417,7 @@ export default {
     return {
       form,
       optionCheck,
-      submitTempleteForm,
+      submitTemplateForm,
       peopleListPlus,
     };
   },
