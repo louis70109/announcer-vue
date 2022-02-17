@@ -331,7 +331,7 @@ export default {
         template: '',
       }),
       data = {},
-      announcer_api = process.env.VUE_APP_API;
+      announcerApi = process.env.VUE_APP_API;
     onMounted(async () => {
       const uri = window.location.search.substring(1);
       const params = new URLSearchParams(uri);
@@ -346,7 +346,7 @@ export default {
         return new Promise.all();
       }
       const res = await fetch(
-        `${announcer_api}/liff/share?${qs.stringify(form.value)}`
+        `${announcerApi}/liff/share?${qs.stringify(form.value)}`
       );
       data = await res.json();
       console.log('data: ', data);
